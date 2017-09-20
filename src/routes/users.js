@@ -10,7 +10,8 @@ router.post('/', (req, res) => {
   const user = new User({ email });
   user.setPassword(password);
   user.setConfirmationToken();
-  user.save()
+  user
+    .save()
     .then((userRecord) => {
       sendConfirmationEmail(userRecord);
       res.json({ user: userRecord.toAuthJSON() });

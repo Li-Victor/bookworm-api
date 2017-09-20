@@ -21,10 +21,8 @@ router.post('/confirmation', (req, res) => {
   User.findOneAndUpdate(
     { confirmationToken: token },
     { confirmationToken: '', confirmed: true },
-    { new: true },
-  ).then(user =>
-    (user ? res.json({ user: user.toAuthJSON() }) : res.status(400).json({})),
-  );
+    { new: true }
+  ).then(user => (user ? res.json({ user: user.toAuthJSON() }) : res.status(400).json({})));
 });
 
 router.post('/reset_password_request', (req, res) => {
